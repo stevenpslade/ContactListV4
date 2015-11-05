@@ -15,6 +15,13 @@ post '/contacts' do
   halt 200, {'Content-Type' => 'application/json'}, @contact.to_json
 end
 
+put '/contacts/:id' do
+  @contact = Contact.find params[:id]
+  @contact[:firstname] = params[:firstname]
+  @contact.save
+  halt 200, {'Content-Type' => 'application/json'}, @contact.to_json
+end
+
 get '/contacts/:id' do
   @contact = Contact.find params[:id]
   halt 200, {'Content-Type' => 'application/json'}, @contact.to_json
